@@ -490,6 +490,8 @@ abstract class Field implements Sortable, AutoTranslatable
 
         if ($val instanceof \BenSampo\Enum\Enum) {
             $val = $val->value;
+        } else if ($val instanceof \Illuminate\Database\Eloquent\Model) {
+            $val = $val->{$val->getKeyName()};
         }
 
         return $val ?? request($this->id);
