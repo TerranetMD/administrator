@@ -4,7 +4,9 @@ namespace Terranet\Administrator\Traits\Actions;
 
 use Illuminate\Contracts\Auth\Authenticatable as User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Support\Str;
+use Illuminate\View\ComponentAttributeBag;
 use Terranet\Administrator\Contracts\Module;
 
 trait BatchSkeleton
@@ -28,6 +30,19 @@ trait BatchSkeleton
         );
     }
 
+    public function props(Eloquent $entity = null): ComponentAttributeBag
+    {
+        $action = app('scaffold.module')->url().'-'.$this->action($entity);
+        $attrs = $this->attributes($entity);
+
+        return (new ComponentAttributeBag($attrs))->merge([
+            'data-scaffold-action' => $action,
+            'data-form-target' => $this->formTarget(),
+            'data-scaffold-key' => $this->entityKey($entity),
+            'href' => $this->route($entity),
+        ]);
+    }
+
     /**
      * @param $model
      *
@@ -41,14 +56,14 @@ trait BatchSkeleton
     /**
      * @param $model
      *
-     * @return string
+     * @return array
      */
-    protected function attributes($model)
+    protected function attributes($model): array
     {
-        return \admin\helpers\html_attributes([
+        return [
             'data-confirmation' => sprintf('Are you sure you want to %s?', $this->name($model)),
             'data-action' => $this->action($model),
             'class' => 'text-left',
-        ]);
+        ];
     }
 }
