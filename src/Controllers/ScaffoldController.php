@@ -343,12 +343,12 @@ class ScaffoldController extends AdminController
     }
 
     /**
-     * @param  string  $term
+     * @param  ?string  $term
      * @param  Model  $eloquent
      * @param  string  $column
      * @return mixed
      */
-    protected function searchableQuery(string $term, Model $eloquent, string $column): Builder
+    protected function searchableQuery(?string $term, Model $eloquent, string $column): Builder
     {
         $searchByKey = is_numeric($term);
         $searchableKey = $searchByKey ? $eloquent->getKeyName() : $column;

@@ -41,6 +41,6 @@ trait HasValuePresenter
      */
     public function presenterMethod(string $fieldName): string
     {
-        return 'admin'.Str::title(Str::camel($fieldName));
+        return 'admin' . Str::title(Str::camel($fieldName));
     }
 }

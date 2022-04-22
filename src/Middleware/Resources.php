@@ -159,7 +159,7 @@ class Resources
     protected function validateContainer(Module $module, Menu $navigation)
     {
         $container = $module->navigableIn();
-
+        
         if (!array_key_exists($container, $navigation->all())) {
             $message =
                 "Can not add \"{$module->title()}\" to \"{$container}\" menu. Available menus: ".
