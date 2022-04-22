@@ -18,6 +18,9 @@ abstract class ElementContainer implements AutoTranslatable
     /** @var string */
     protected $title;
 
+    /** @var string */
+    protected $description;
+
     /** @var null|object */
     protected $module;
 
@@ -54,7 +57,7 @@ abstract class ElementContainer implements AutoTranslatable
     /**
      * Set element title.
      *
-     * @param $title
+     * @param string $title
      *
      * @return $this
      */
@@ -64,6 +67,20 @@ abstract class ElementContainer implements AutoTranslatable
         $title = preg_replace('~^(\w+)\.(\w+)$~si', '$1 $2', $title);
 
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Set element description.
+     *
+     * @param string $description
+     *
+     * @return $this
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }
@@ -86,6 +103,16 @@ abstract class ElementContainer implements AutoTranslatable
     public function title()
     {
         return $this->title;
+    }
+
+    /**
+     * Get element description.
+     *
+     * @return string
+     */
+    public function description()
+    {
+        return $this->description;
     }
 
     /**
