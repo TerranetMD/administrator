@@ -194,13 +194,19 @@ class Scaffolding implements Module, AutoTranslatable
      */
     public function model()
     {
-        static $model = null;
+        static $models = [];
 
-        if (null === $model && ($class = $this->getModelClass())) {
-            $model = new $class();
+        $class = $this->getModelClass();
+
+        if (!$class) {
+            return null;
         }
 
-        return $model;
+        if (!array_key_exists($class, $models)) {
+            $models[$class] = new $class();
+        }
+
+        return $models[$class];
     }
 
     /**
