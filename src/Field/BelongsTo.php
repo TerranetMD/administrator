@@ -8,10 +8,11 @@ use Illuminate\Support\Str;
 use Terranet\Administrator\Architect;
 use Terranet\Administrator\Field\Traits\HandlesRelation;
 use Terranet\Administrator\Field\Traits\HasEmptyValue;
+use Terranet\Administrator\Traits\Form\SupportsListTypes;
 
 class BelongsTo extends Field
 {
-    use HandlesRelation, HasEmptyValue;
+    use HandlesRelation, HasEmptyValue, SupportsListTypes;
 
     /** @var string */
     public $column = 'name';
@@ -153,7 +154,7 @@ class BelongsTo extends Field
         ];
     }
 
-    protected function searchUrl(string $searchIn, string $searchBy)
+    protected function searchUrl(?string $searchIn, string $searchBy): ?string
     {
         return $this->searchUrl ?? strtr('/{path}/search/?searchable={searchIn}&field={searchBy}', [
                 '{path}' => \Terranet\Administrator\Architect::path(),
