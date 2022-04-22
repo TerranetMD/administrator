@@ -50,6 +50,9 @@ abstract class Field implements Sortable, AutoTranslatable
     /** @var bool */
     public $showLabel = true;
 
+    /** @var bool */
+    public $required = false;
+
     /** @var array */
     public $visibility = [
         Scaffolding::PAGE_INDEX => true,
@@ -106,12 +109,29 @@ abstract class Field implements Sortable, AutoTranslatable
     }
 
     /**
+     * Set field title.
+     *
      * @param string $title
+     *
      * @return static
      */
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Set field required.
+     *
+     * @param bool $value
+     *
+     * @return $this
+     */
+    public function setRequired(bool $value): self
+    {
+        $this->required = $value;
 
         return $this;
     }
@@ -176,6 +196,26 @@ abstract class Field implements Sortable, AutoTranslatable
     public function id(): string
     {
         return $this->id;
+    }
+
+    /**
+     * Return Element required flag.
+     *
+     * @return bool
+     */
+    public function required(): bool
+    {
+        return $this->required;
+    }
+
+    /**
+     * Return Element description.
+     *
+     * @return string
+     */
+    public function description()
+    {
+        return $this->description;
     }
 
     /**
