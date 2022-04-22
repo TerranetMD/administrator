@@ -26,10 +26,13 @@ class DateTime extends Field
             Time::class => $this->timeFormat,
         ][get_class($this)];
 
-        $formattedValue = Carbon::parse($this->value())->format($format);
+        $date = Carbon::parse($this->value());
 
         return [
-            'formatted' => $formattedValue,
+            'formatted' => $date->format($format),
+            'formattedDate' => $date->format($this->dateFormat),
+            'formattedTime' => $date->format($this->timeFormat),
+            'formattedFull' => $date->format($this->dateTimeFormat),
         ];
     }
 
