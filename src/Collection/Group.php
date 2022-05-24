@@ -27,6 +27,9 @@ class Group extends ElementContainer
      */
     protected $elements;
 
+    /** @var bool */
+    protected $sidebar = false;
+
     /**
      * Group constructor.
      *
@@ -71,6 +74,20 @@ class Group extends ElementContainer
     }
 
     /**
+     * Set element sidebar.
+     *
+     * @param bool $value
+     *
+     * @return $this
+     */
+    public function setSidebar(bool $value): self
+    {
+        $this->sidebar = $value;
+
+        return $this;
+    }
+
+    /**
      * Push an.
      *
      * @param $element
@@ -104,5 +121,15 @@ class Group extends ElementContainer
     public function elements()
     {
         return $this->elements;
+    }
+
+    /**
+     * Get element sidebar
+     *
+     * @return bool
+     */
+    public function sidebar(): bool
+    {
+        return $this->sidebar;
     }
 }
