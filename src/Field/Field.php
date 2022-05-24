@@ -53,6 +53,12 @@ abstract class Field implements Sortable, AutoTranslatable
     /** @var bool */
     public $required = false;
 
+    /** @var bool */
+    public $countable = false;
+
+    /** @var string|null */
+    public $icon;
+
     /** @var array */
     public $visibility = [
         Scaffolding::PAGE_INDEX => true,
@@ -73,13 +79,13 @@ abstract class Field implements Sortable, AutoTranslatable
         );
 
         if (trans()->has($key = $this->translationKey())) {
-            $this->setTitle((string) trans()->get($key));
+            $this->setTitle((string)trans()->get($key));
         } else {
             $this->setTitle(Architect::humanize($title));
         }
 
         if (trans()->has($key = $this->descriptionKey())) {
-            $this->setDescription((string) trans()->get($key));
+            $this->setDescription((string)trans()->get($key));
         }
     }
 
@@ -132,6 +138,27 @@ abstract class Field implements Sortable, AutoTranslatable
     public function setRequired(bool $value): self
     {
         $this->required = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set field countable.
+     *
+     * @param bool $value
+     *
+     * @return $this
+     */
+    public function setCountable(bool $value): self
+    {
+        $this->countable = $value;
+
+        return $this;
+    }
+
+    public function setIcon(?string $value): self
+    {
+        $this->icon = $value;
 
         return $this;
     }
@@ -219,6 +246,26 @@ abstract class Field implements Sortable, AutoTranslatable
     }
 
     /**
+     * Return Element countable.
+     *
+     * @return bool
+     */
+    public function countable(): bool
+    {
+        return $this->countable;
+    }
+
+    /**
+     * Return Element icon.
+     *
+     * @return string|null
+     */
+    public function icon(): ?string
+    {
+        return $this->icon;
+    }
+
+    /**
      * Switch to a new element type.
      *
      * @param string $className
@@ -272,7 +319,7 @@ abstract class Field implements Sortable, AutoTranslatable
             'attributes' => $this->getAttributes(),
         ];
 
-        if (method_exists($this, $dataGetter = 'on'.Str::title($page))) {
+        if (method_exists($this, $dataGetter = 'on' . Str::title($page))) {
             $data += call_user_func([$this, $dataGetter]);
         }
 
@@ -318,7 +365,7 @@ abstract class Field implements Sortable, AutoTranslatable
                 return $this->name = implode('', array_merge([$first], $other));
             }
 
-            return $this->name = $this->id().($this->isArray ?? false ? '[]' : '');
+            return $this->name = $this->id() . ($this->isArray ?? false ? '[]' : '');
         }
 
         return $this->name;
@@ -391,7 +438,7 @@ abstract class Field implements Sortable, AutoTranslatable
      */
     public function isVisibleOnPage(string $page): bool
     {
-        return (bool) $this->visibility[$page] ?? false;
+        return (bool)$this->visibility[$page] ?? false;
     }
 
     /**
@@ -400,7 +447,7 @@ abstract class Field implements Sortable, AutoTranslatable
      */
     public function hideOnPages($pages): self
     {
-        return $this->setPagesVisibility((array) $pages, false);
+        return $this->setPagesVisibility((array)$pages, false);
     }
 
     /**
@@ -425,7 +472,7 @@ abstract class Field implements Sortable, AutoTranslatable
      */
     public function showOnPages($pages): self
     {
-        return $this->setPagesVisibility((array) $pages, true);
+        return $this->setPagesVisibility((array)$pages, true);
     }
 
     /**
@@ -489,6 +536,8 @@ abstract class Field implements Sortable, AutoTranslatable
         $val = $this->model->getAttribute($property);
 
         if ($val instanceof \BenSampo\Enum\Enum) {
+            $val = $val->value;
+        } else if ($val instanceof \UnitEnum) {
             $val = $val->value;
         } else if ($val instanceof \Illuminate\Database\Eloquent\Model) {
             $val = $val->{$val->getKeyName()};

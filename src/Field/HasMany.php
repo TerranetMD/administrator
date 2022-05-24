@@ -71,7 +71,7 @@ class HasMany extends Field
      *
      * @return self
      */
-    public function setIcon(string $icon): self
+    public function setIcon(string|null $icon): self
     {
         $this->icon = $icon;
 
@@ -130,7 +130,7 @@ class HasMany extends Field
     {
         $relation = $this->relation();
         $related = $relation->getRelated();
-        
+
         // apply a query
         if ($this->query instanceof Closure) {
             $relation = \call_user_func_array($this->query, [$relation]);

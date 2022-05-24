@@ -7,14 +7,25 @@ class BelongsToMany extends HasMany
     /** @var string */
     public $icon = 'random';
 
-    /**
-     * @param string $column
-     * @return BelongsToMany
-     */
+    /** @var bool */
+    public $inline = false;
+
     public function useAsTitle(string $column): self
     {
         $this->titleField = $column;
 
         return $this;
+    }
+
+    public function setInline(bool $value): self
+    {
+        $this->inline = $value;
+
+        return $this;
+    }
+
+    public function inline(): bool
+    {
+        return $this->inline;
     }
 }
