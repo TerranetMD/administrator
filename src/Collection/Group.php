@@ -27,6 +27,9 @@ class Group extends ElementContainer
      */
     protected $elements;
 
+    /** @var int */
+    protected $order = 0;
+
     /** @var bool */
     protected $sidebar = false;
 
@@ -88,6 +91,20 @@ class Group extends ElementContainer
     }
 
     /**
+     * Set element order.
+     *
+     * @param int $value
+     *
+     * @return $this
+     */
+    public function setOrder(int $value): self
+    {
+        $this->order = $value;
+
+        return $this;
+    }
+
+    /**
      * Push an.
      *
      * @param $element
@@ -131,5 +148,15 @@ class Group extends ElementContainer
     public function sidebar(): bool
     {
         return $this->sidebar;
+    }
+
+    /**
+     * Get element order.
+     *
+     * @return int
+     */
+    public function order(): int
+    {
+        return $this->order;
     }
 }
