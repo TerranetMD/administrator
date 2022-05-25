@@ -27,4 +27,11 @@ interface CrudActions
      * @return mixed
      */
     public function batchActions();
+
+    /**
+     * List of toolbar actions.
+     *
+     * @return mixed
+     */
+    public function toolbarActions();
 }

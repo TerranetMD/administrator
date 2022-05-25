@@ -52,6 +52,16 @@ trait HasColumns
     }
 
     /**
+     * List of toolbar actions.
+     *
+     * @return Manager
+     */
+    public function toolbar(): Manager
+    {
+        return new Manager();
+    }
+
+    /**
      * Scaffold columns.
      *
      * @return MutableCollection

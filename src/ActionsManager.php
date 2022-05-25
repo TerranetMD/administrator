@@ -77,6 +77,16 @@ class ActionsManager implements ActionsManagerContract
     }
 
     /**
+     * Fetch module's toolbar actions.
+     *
+     * @return Collection
+     */
+    public function toolbar()
+    {
+        return $this->scaffoldToolbar();
+    }
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @param string $ability
@@ -170,5 +180,15 @@ class ActionsManager implements ActionsManagerContract
     protected function scaffoldBatch()
     {
         return new Collection($this->service->batchActions());
+    }
+
+    /**
+     * Parse handler class for per-item and global actions.
+     *
+     * @return Collection
+     */
+    protected function scaffoldToolbar()
+    {
+        return new Collection($this->service->toolbarActions());
     }
 }

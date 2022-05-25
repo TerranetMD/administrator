@@ -66,6 +66,16 @@ class CrudActions implements CrudActionsContract
     }
 
     /**
+     * Default custom list of toolbar actions.
+     *
+     * @return array
+     */
+    public function toolbarActions()
+    {
+        return [];
+    }
+
+    /**
      * Update item callback.
      *
      * @param               $eloquent
