@@ -27,7 +27,9 @@ class EloquentPresenter
 
     protected function getQualifiedTitleName()
     {
-        foreach (['title', 'name', 'username', 'nickname'] as $column) {
+        $columns = config('administrator.breadcrumbs_qualified_title', ['title', 'name', 'username', 'nickname']);
+
+        foreach ($columns as $column) {
             if (array_key_exists($column, $this->eloquent->toArray())) {
                 return $column;
             }

@@ -39,6 +39,8 @@ return [
      */
     'breadcrumbs' => false,
 
+    'breadcrumbs_qualified_title' => ['title', 'name', 'username', 'nickname'],
+
     // Handle passwords -> Convert plain text to Hash
     'manage_passwords' => true,
 
