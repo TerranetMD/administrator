@@ -28,9 +28,10 @@ class EloquentPresenter
     protected function getQualifiedTitleName()
     {
         $columns = config('administrator.breadcrumbs_qualified_title', ['title', 'name', 'username', 'nickname']);
+        $attrs = array_merge(array_flip($this->eloquent->getMutatedAttributes()), $this->eloquent->getAttributes());
 
         foreach ($columns as $column) {
-            if (array_key_exists($column, $this->eloquent->toArray())) {
+            if (array_key_exists($column, $attrs)) {
                 return $column;
             }
         }
