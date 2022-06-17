@@ -26,6 +26,9 @@ abstract class Filter implements Queryable
     /** @var mixed */
     public $value;
 
+    /** @var bool */
+    protected $useSearchable = true;
+
     /**
      * Generic constructor.
      *
@@ -96,6 +99,28 @@ abstract class Filter implements Queryable
     public function setValue($value): self
     {
         $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function useSearchable(): bool
+    {
+        return $this->useSearchable;
+    }
+
+    /**
+     * Set Use Searchable flag.
+     *
+     * @param bool $value
+     *
+     * @return $this
+     */
+    public function setUseSearchable(bool $value): self
+    {
+        $this->useSearchable = $value;
 
         return $this;
     }

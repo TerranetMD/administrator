@@ -258,7 +258,7 @@ class Assembler
         }
 
         // Basic filters
-        if ($element instanceof Searchable) {
+        if ($element instanceof Searchable && $element->useSearchable()) {
             $this->query = $element->searchBy($this->query, $this->model);
         }
 
