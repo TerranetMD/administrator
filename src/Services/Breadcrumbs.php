@@ -143,10 +143,18 @@ class Breadcrumbs
      */
     protected function presentEloquent(): ?string
     {
+        $module = app('scaffold.module');
+
         if (!$model = app('scaffold.model')) {
-            $model = app('scaffold.module')->model();
+            $model = $module->model();
         }
 
-        return (new EloquentPresenter($model))->present();
+        $results = null;
+
+        if (method_exists($module, 'breadcrumbQualifiedTitle')) {
+            $results = $module->breadcrumbQualifiedTitle($model);
+        }
+
+        return $results ?: (new EloquentPresenter($model))->present();
     }
 }
