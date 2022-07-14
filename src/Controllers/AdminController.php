@@ -55,7 +55,7 @@ abstract class AdminController extends BaseController
         }
 
         return redirect()->route(
-            $request->exists('save_return') ? 'scaffold.index' : 'scaffold.create',
+            $request->input('save_return') ? 'scaffold.index' : 'scaffold.create',
             ['module' => $module]
         );
     }
