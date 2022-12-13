@@ -143,12 +143,18 @@ class HasMany extends Field
         $columns = $module->columns()->each->disableSorting();
         $actions = $module->actions();
 
+        $items = $relation;
+
+        if ($items && method_exists($items, 'getResults')) {
+            $items = $items->getResults();
+        }
+
         return [
             'module' => $module ?? null,
             'columns' => $columns ?? null,
             'actions' => $actions ?? null,
             'relation' => $relation ?? null,
-            'items' => $relation ? $relation->getResults() : null,
+            'items' => $items,
         ];
     }
 
