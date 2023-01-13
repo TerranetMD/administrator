@@ -6,80 +6,46 @@ interface TemplateProvider
 {
     /**
      * Scaffold layout.
-     *
-     * @return string
      */
-    public function layout();
+    public function layout(): string;
 
     /**
      * Scaffold index template.
-     *
-     * @param  $partial
-     *
-     * @return mixed array|string
      */
-    public function index($partial = 'index');
+    public function index(string $partial = 'index'): array|string;
 
     /**
      * Scaffold view templates.
-     *
-     * @param $partial
-     *
-     * @return mixed array|string
      */
-    public function view($partial = 'index');
+    public function view(string $partial = 'index'): array|string;
 
     /**
      * Scaffold edit templates.
-     *
-     * @param $partial
-     *
-     * @return mixed array|string
      */
-    public function edit($partial = 'index');
+    public function edit(string $partial = 'index'): array|string;
 
     /**
      * Scaffold navigation templates.
-     *
-     * @param $partial
-     *
-     * @return mixed array|string
      */
-    public function menu($partial = 'index');
+    public function menu(string $partial = 'index'): array|string;
 
     /**
      * Scaffold partials templates.
-     *
-     * @param $partial
-     *
-     * @return mixed array|string
      */
-    public function partials($partial = 'index');
+    public function partials(string $partial = 'index'): array|string;
 
     /**
      * Scaffold scripts templates.
-     *
-     * @param $partial
-     *
-     * @return mixed array|string
      */
-    public function scripts($partial = 'index');
+    public function scripts(string $partial = 'index'): array|string;
 
     /**
      * Scaffold auth templates.
-     *
-     * @param $partial
-     *
-     * @return mixed array|string
      */
-    public function auth($partial = 'index');
+    public function auth(string $partial = 'index'): array|string;
 
     /**
      * Scaffold dashboard templates.
-     *
-     * @param $partial
-     *
-     * @return mixed array|string
      */
-    public function dashboard($partial = 'index');
+    public function dashboard(string $partial = 'index'): array|string;
 }

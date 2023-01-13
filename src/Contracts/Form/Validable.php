@@ -6,10 +6,6 @@ interface Validable
 {
     /**
      * Set validation rules.
-     *
-     * @param array $rules
-     *
-     * @return mixed
      */
-    public function setRules(array $rules = []);
+    public function setRules(array $rules = []): mixed;
 }

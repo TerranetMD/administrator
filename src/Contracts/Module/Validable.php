@@ -6,8 +6,6 @@ interface Validable
 {
     /**
      * Validation rules.
-     *
-     * @return mixed
      */
-    public function rules();
+    public function rules(): array;
 }

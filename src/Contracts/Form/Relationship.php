@@ -8,8 +8,6 @@ interface Relationship
      * Set Element relation string.
      *
      * @param $relation
-     *
-     * @return mixed
      */
-    public function setRelation($relation);
+    public function setRelation($relation): mixed;
 }

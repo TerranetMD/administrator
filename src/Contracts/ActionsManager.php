@@ -8,28 +8,16 @@ interface ActionsManager
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @param string $method
-     * @param null|Model $model
-     *
-     * @return bool
      */
-    public function authorize($method, ?Model $model = null);
+    public function authorize(string $method, ?Model $model = null): bool;
 
     /**
      * Parse given class for single actions.
-     *
-     * @return array
      */
-    public function actions();
+    public function actions(): array;
 
     /**
      * Call handler method.
-     *
-     * @param string $method
-     * @param array $arguments
-     *
-     * @return mixed
      */
-    public function exec(string $method, array $arguments = []);
+    public function exec(string $method, array $arguments = []): mixed;
 }

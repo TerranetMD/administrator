@@ -11,5 +11,5 @@ interface Guard
      *
      * @return bool
      */
-    public function isPermissionGranted($permission);
+    public function isPermissionGranted($permission): bool;
 }

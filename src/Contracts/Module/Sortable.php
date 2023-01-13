@@ -6,8 +6,6 @@ interface Sortable
 {
     /**
      * Define list of sortable columns.
-     *
-     * @return mixed
      */
-    public function sortable();
+    public function sortable(): array;
 }

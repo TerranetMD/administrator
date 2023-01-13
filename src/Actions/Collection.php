@@ -23,12 +23,8 @@ class Collection extends BaseCollection
 
     /**
      * Find action by name.
-     *
-     * @param $name
-     *
-     * @return mixed
      */
-    public function find($name)
+    public function find(string $name): mixed
     {
         return $this->first(function ($action) use ($name) {
             return class_basename($action) === Str::studly($name);
@@ -43,7 +39,7 @@ class Collection extends BaseCollection
      *
      * @return static
      */
-    public function authorized(?User $user = null, Model $model = null)
+    public function authorized(?User $user = null, Model $model = null): self
     {
         $user = $user ?: auth('admin')->user();
         $model = $model ?: app('scaffold.module')->model();

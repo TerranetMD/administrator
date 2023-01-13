@@ -6,8 +6,6 @@ interface AutoTranslatable
 {
     /**
      * Builds a translation key.
-     *
-     * @return string
      */
-    public function translationKey();
+    public function translationKey(): string;
 }

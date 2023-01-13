@@ -11,5 +11,5 @@ interface Queryable
      *
      * @return mixed
      */
-    public function query($query);
+    public function query($query): mixed;
 }

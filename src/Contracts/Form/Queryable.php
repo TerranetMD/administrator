@@ -8,10 +8,8 @@ interface Queryable
 {
     /**
      * Check if Filter element has a query.
-     *
-     * @return bool
      */
-    public function hasQuery();
+    public function hasQuery(): bool;
 
     /**
      * Execute filter element's query.

@@ -8,33 +8,25 @@ interface Filter
 {
     /**
      * Set filters.
-     *
-     * @param Mutable $filters
-     *
-     * @return mixed
      */
-    public function setFilters(Mutable $filters = null);
+    public function setFilters(Mutable $filters = null): mixed;
 
     /**
      * Set scopes.
-     *
-     * @param array $scopes
-     *
-     * @return mixed
      */
-    public function setScopes(Mutable $scopes = null);
+    public function setScopes(Mutable $scopes = null): mixed;
 
     /**
      * Get Filters.
      *
      * @return mixed
      */
-    public function filters();
+    public function filters(): mixed;
 
     /**
      * Get scopes.
      *
      * @return mixed
      */
-    public function scopes();
+    public function scopes(): mixed;
 }

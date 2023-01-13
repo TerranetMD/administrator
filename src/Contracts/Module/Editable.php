@@ -6,8 +6,6 @@ interface Editable
 {
     /**
      * Define editable fields.
-     *
-     * @return mixed
      */
-    public function form();
+    public function form(): mixed;
 }

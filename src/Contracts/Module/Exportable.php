@@ -6,17 +6,13 @@ interface Exportable
 {
     /**
      * Available export formats.
-     *
-     * @return array
      */
-    public function formats();
+    public function formats(): array;
 
     /**
      * Get exportable url.
      *
      * @param $format
-     *
-     * @return string
      */
-    public function makeExportableUrl($format);
+    public function makeExportableUrl($format): string;
 }

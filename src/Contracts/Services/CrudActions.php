@@ -12,26 +12,20 @@ interface CrudActions
      *
      * @return bool
      */
-    public function authorize($method, $eloquent = null);
+    public function authorize(string $method, $eloquent = null): bool;
 
     /**
      * List of single actions.
-     *
-     * @return array
      */
-    public function actions();
+    public function actions(): array;
 
     /**
      * List of batch actions.
-     *
-     * @return mixed
      */
-    public function batchActions();
+    public function batchActions(): mixed;
 
     /**
      * List of toolbar actions.
-     *
-     * @return mixed
      */
-    public function toolbarActions();
+    public function toolbarActions(): mixed;
 }

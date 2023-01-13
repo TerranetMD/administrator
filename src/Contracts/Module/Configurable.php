@@ -6,8 +6,6 @@ interface Configurable
 {
     /**
      * Get array of settings with form types.
-     *
-     * @return mixed
      */
-    public function settings();
+    public function settings(): mixed;
 }

@@ -6,8 +6,6 @@ interface Saver
 {
     /**
      * Process request and persist data.
-     *
-     * @return mixed
      */
-    public function sync();
+    public function sync(): mixed;
 }

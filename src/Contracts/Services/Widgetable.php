@@ -6,8 +6,6 @@ interface Widgetable
 {
     /**
      * Widget contents.
-     *
-     * @return mixed
      */
-    public function render();
+    public function render(): mixed;
 }

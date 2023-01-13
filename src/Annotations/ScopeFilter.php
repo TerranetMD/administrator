@@ -10,12 +10,7 @@ use Doctrine\Common\Annotations\Annotation\Target;
  */
 final class ScopeFilter
 {
-    /** @var string */
-    public $name;
-
-    /** @var string */
-    public $translate;
-
-    /** @var string */
-    public $icon;
+    public string $name;
+    public string $translate;
+    public string $icon;
 }

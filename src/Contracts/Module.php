@@ -21,74 +21,51 @@ interface Module
 
     /**
      * The module title.
-     *
-     * @return string
      */
     public function title(): string;
 
     /**
      * The module url.
-     *
-     * @return string
      */
     public function url(): string;
 
     /**
      * Define the list of columns to show.
-     *
-     * @return Mutable
      */
     public function columns(): Mutable;
 
     /**
      * Define the class responsive for fetching items.
-     *
-     * @return null|Finder
      */
     public function finder(): ?Finder;
 
     /**
      * Breadcrumbs provider.
-     *
-     * @return null|Breadcrumbs
      */
     public function breadcrumbs(): ?Breadcrumbs;
 
     /**
      * Define the class responsive for persisting items.
-     *
-     * @param  Model  $eloquent
-     * @param  UpdateRequest  $request
-     * @return Saver
      */
     public function saver(Model $eloquent, UpdateRequest $request): Saver;
 
     /**
      * Actions handler.
-     *
-     * @return ActionsManager
      */
     public function actions(): ActionsManager;
 
     /**
      * The module Templates manager.
-     *
-     * @return null|TemplateProvider
      */
     public function template(): ?TemplateProvider;
 
     /**
      * Filters & Scopes handler.
-     *
-     * @return null|Filter
      */
     public function filter(): ?Filter;
 
     /**
      * Breadcrumb qualified title.
-     *
-     * @param Model $eloquent
-     * @return null|string
      */
     public function breadcrumbQualifiedTitle(Model $eloquent): ?string;
 }

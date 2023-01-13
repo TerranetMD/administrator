@@ -8,15 +8,11 @@ interface Filtrable
 {
     /**
      * Declare scaffold filters.
-     *
-     * @return Mutable
      */
-    public function filters();
+    public function filters(): Mutable;
 
     /**
      * Declare scaffold scopes.
-     *
-     * @return Mutable
      */
-    public function scopes();
+    public function scopes(): Mutable;
 }
