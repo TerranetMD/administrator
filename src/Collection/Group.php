@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Terranet\Administrator\Collection\Mutable as MutableCollection;
 use Terranet\Administrator\Field\Traits\HandlesVisibility;
 use Terranet\Administrator\Traits\Collection\ElementContainer;
+use Terranet\Administrator\Traits\Form\HasHtmlAttributes;
 
 /**
  * Class Group.
@@ -20,7 +21,7 @@ use Terranet\Administrator\Traits\Collection\ElementContainer;
  */
 class Group extends ElementContainer
 {
-    use HandlesVisibility;
+    use HandlesVisibility, HasHtmlAttributes;
 
     /**
      * @var MutableCollection
@@ -42,6 +43,7 @@ class Group extends ElementContainer
     {
         parent::__construct($id);
 
+        $this->attributes = [];
         $this->elements = new MutableCollection([]);
     }
 
