@@ -319,12 +319,12 @@ abstract class Field implements Sortable, AutoTranslatable
             'attributes' => $this->getAttributes(),
         ];
 
-        if ($this->hasCustomFormat()) {
-            return $this->callFormatter($this->model, $page);
-        }
-
         if (method_exists($this, $dataGetter = 'on' . Str::title($page))) {
             $data += call_user_func([$this, $dataGetter]);
+        }
+
+        if ($this->hasCustomFormat()) {
+            return $this->callFormatter($this->model, $page, $data);
         }
 
         if (View::exists($view = $this->template($page))) {
