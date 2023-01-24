@@ -83,4 +83,12 @@ interface Module
      * @return null|Filter
      */
     public function filter(): ?Filter;
+
+    /**
+     * Breadcrumb qualified title.
+     *
+     * @param Model $eloquent
+     * @return null|string
+     */
+    public function breadcrumbQualifiedTitle(Model $eloquent): ?string;
 }

@@ -38,7 +38,7 @@ trait HasColumns
      */
     public function widgets(): Manager
     {
-        return new Manager();
+        return $this->scaffoldWidgets();
     }
 
     /**
@@ -71,6 +71,11 @@ trait HasColumns
         return $this->collectColumns(
             $this->model()
         );
+    }
+
+    protected function scaffoldWidgets(): Manager
+    {
+        return new Manager();
     }
 
     /**

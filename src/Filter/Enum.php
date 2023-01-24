@@ -14,6 +14,7 @@ class Enum extends Filter implements Searchable
 
     /** @var array */
     public $options = [];
+
     /** @var string */
     protected $component = 'enum';
 

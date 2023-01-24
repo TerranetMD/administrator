@@ -32,13 +32,14 @@ trait BatchSkeleton
 
     public function props(Eloquent $entity = null): ComponentAttributeBag
     {
-        $action = app('scaffold.module')->url().'-'.$this->action($entity);
-        $attrs = $this->attributes($entity);
+        $scaffoldAction = app('scaffold.module')->url().'-'.$this->action($entity);
 
-        return (new ComponentAttributeBag($attrs))->merge([
-            'data-scaffold-action' => $action,
+        return (new ComponentAttributeBag($this->attributes($entity)))->merge([
+            'data-scaffold-action' => $scaffoldAction,
             'data-form-target' => $this->formTarget(),
             'data-scaffold-key' => $this->entityKey($entity),
+            'data-confirmation' => sprintf('Are you sure you want to %s?', $this->name($entity)),
+            'data-action' => $this->action($entity),
             'href' => $this->route($entity),
         ]);
     }

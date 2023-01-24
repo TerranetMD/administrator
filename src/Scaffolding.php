@@ -336,6 +336,17 @@ class Scaffolding implements Module, AutoTranslatable
     }
 
     /**
+     * Breadcrumb qualified title.
+     *
+     * @param Model $eloquent
+     * @return null|string
+     */
+    public function breadcrumbQualifiedTitle(Model $eloquent): ?string
+    {
+        return null;
+    }
+
+    /**
      * Breadcrumbs service.
      *
      * @return Breadcrumbs
