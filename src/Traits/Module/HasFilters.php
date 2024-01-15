@@ -66,7 +66,7 @@ trait HasFilters
      * @return mixed
      * @throws \ReflectionException
      */
-    public function filters()
+    public function filters(): Mutable
     {
         return $this->scaffoldFilters();
     }
@@ -74,7 +74,7 @@ trait HasFilters
     /**
      * Default list of scopes.
      */
-    public function scopes()
+    public function scopes(): Mutable
     {
         return $this->scaffoldScopes();
     }
@@ -146,7 +146,7 @@ trait HasFilters
      * @return Mutable
      * @throws \ReflectionException
      */
-    protected function scaffoldScopes()
+    protected function scaffoldScopes(): Mutable
     {
         $this->scopes = new Mutable();
 

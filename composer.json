@@ -9,24 +9,23 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
+        "php": "8.*",
         "ext-json": "*",
         "ext-dom": "*",
         "laravelcollective/html": "^5.0|^6.0|^7.0|dev-master",
-        "doctrine/dbal": "3.3.*",
-        "doctrine/annotations": "^1.13",
+        "doctrine/dbal": "3.*",
+        "doctrine/annotations": "^1.6",
         "terranet/menus": "^2.2",
         "terranet/presentable": "^1.0",
         "terranet/translatable": "^1.2",
-        "terranet/localizer": "^1.3",
+        "terranet/localizer": "^1.0",
         "zendframework/zend-code": "2.*|3.*",
         "davejamesmiller/laravel-breadcrumbs": "^5.2|^5.3|dev-master",
-        "spatie/once": "^3.0.2"
+        "spatie/once": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "mockery/mockery": "^1.4",
-        "laravel/framework": "^9.1"
+        "phpunit/phpunit": "^7.2",
+        "mockery/mockery": "^1.1"
     },
     "autoload": {
         "psr-4": {

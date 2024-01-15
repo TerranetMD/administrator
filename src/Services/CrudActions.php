@@ -44,7 +44,7 @@ class CrudActions implements CrudActionsContract
      *
      * @return array
      */
-    public function actions()
+    public function actions(): array
     {
         return [];
     }
@@ -54,7 +54,7 @@ class CrudActions implements CrudActionsContract
      *
      * @return array
      */
-    public function batchActions()
+    public function batchActions(): array
     {
         $actions = [RemoveSelected::class];
 
@@ -70,7 +70,7 @@ class CrudActions implements CrudActionsContract
      *
      * @return array
      */
-    public function toolbarActions()
+    public function toolbarActions(): array
     {
         return [];
     }
@@ -141,7 +141,7 @@ class CrudActions implements CrudActionsContract
      *
      * @return bool
      */
-    public function authorize($method, $model = null, $module = null)
+    public function authorize($method, $model = null, $module = null): bool
     {
         $accessGate = Gate::forUser($user = $this->request->user());
         $module = $module ?: $this->module;

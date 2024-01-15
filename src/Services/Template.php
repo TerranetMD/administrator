@@ -14,7 +14,7 @@ class Template implements TemplateProvider
      *
      * @return string
      */
-    public function layout($layout = 'app')
+    public function layout(string $layout = 'app'): string
     {
         return config('administrator.layouts.'.$layout, 'administrator::layouts.'.$layout);
     }
@@ -26,7 +26,7 @@ class Template implements TemplateProvider
      *
      * @return mixed array|string
      */
-    public function index($partial = 'index')
+    public function index(string $partial = 'index'): string
     {
         $partials = $this->map(
             'index',
@@ -39,11 +39,11 @@ class Template implements TemplateProvider
     /**
      * Scaffold media templates.
      *
-     * @param $partial
+     * @param string $partial
      *
-     * @return mixed array|string
+     * @return string
      */
-    public function media($partial = 'index')
+    public function media(string $partial = 'index'): string
     {
         $partials = $this->map(
             'media',
@@ -56,11 +56,11 @@ class Template implements TemplateProvider
     /**
      * Scaffold translations templates.
      *
-     * @param $partial
+     * @param string $partial
      *
-     * @return mixed array|string
+     * @return string
      */
-    public function translations($partial = 'index')
+    public function translations(string $partial = 'index'): string
     {
         $partials = $this->map(
             'translations',
@@ -73,11 +73,11 @@ class Template implements TemplateProvider
     /**
      * Scaffold view templates.
      *
-     * @param $partial
+     * @param string $partial
      *
-     * @return mixed array|string
+     * @return mixed string
      */
-    public function view($partial = 'index')
+    public function view(string $partial = 'index'): string
     {
         $partials = $this->map('view', [
             'index',
@@ -91,11 +91,11 @@ class Template implements TemplateProvider
     /**
      * Scaffold edit templates.
      *
-     * @param $partial
+     * @param string $partial
      *
-     * @return mixed array|string
+     * @return string
      */
-    public function edit($partial = 'index')
+    public function edit(string $partial = 'index'): string
     {
         $partials = $this->map('edit', ['index', 'actions', 'row', 'scripts', 'create']);
 
@@ -104,9 +104,9 @@ class Template implements TemplateProvider
 
     /**
      * @param  string  $partial
-     * @return array|string
+     * @return string
      */
-    public function menu($partial = 'sidebar')
+    public function menu(string $partial = 'sidebar'): string
     {
         $partials = $this->map('menus', [Navigable::MENU_SIDEBAR, Navigable::MENU_TOOLS]);
 
@@ -115,9 +115,9 @@ class Template implements TemplateProvider
 
     /**
      * @param  string  $partial
-     * @return array|string
+     * @return string
      */
-    public function partials($partial = 'messages')
+    public function partials(string $partial = 'messages'): string
     {
         $partials = $this->map('partials', ['messages', 'breadcrumbs']);
 
@@ -125,10 +125,10 @@ class Template implements TemplateProvider
     }
 
     /**
-     * @param  string  $partial
-     * @return array|string
+     * @param  ?string $partial
+     * @return string
      */
-    public function scripts($partial = null)
+    public function scripts($partial = null): string
     {
         $partials = $this->map('scripts', ['listeners', 'editors']);
 
@@ -136,10 +136,10 @@ class Template implements TemplateProvider
     }
 
     /**
-     * @param  string  $partial
-     * @return array|string
+     * @param  string $partial
+     * @return string
      */
-    public function auth($partial = 'login')
+    public function auth(string $partial = 'login'): string
     {
         $partials = $this->map('auth', ['login']);
 
@@ -147,10 +147,10 @@ class Template implements TemplateProvider
     }
 
     /**
-     * @param  string  $partial
-     * @return array|string
+     * @param  ?string $partial
+     * @return string
      */
-    public function dashboard($partial = null)
+    public function dashboard(string $partial = null): string
     {
         $partials = $this->map('dashboard', ['database', 'members', 'google_analytics']);
 
@@ -163,7 +163,7 @@ class Template implements TemplateProvider
      *
      * @return array
      */
-    protected function map($namespace, array $views = [])
+    protected function map($namespace, array $views = []): array
     {
         return array_merge(
             ['index' => "administrator::{$namespace}"],

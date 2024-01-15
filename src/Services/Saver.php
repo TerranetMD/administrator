@@ -68,7 +68,7 @@ class Saver implements SaverContract
      *
      * @return mixed
      */
-    public function sync()
+    public function sync(): mixed
     {
         $this->connection()->transaction(function () {
             $this->collectData($this->editable());

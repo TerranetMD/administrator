@@ -3,6 +3,7 @@
 namespace Terranet\Administrator\Services;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -43,10 +44,10 @@ class Finder implements FinderContract
     /**
      * Fetch all items from repository.
      *
-     * @return mixed
+     * @return Collection|LengthAwarePaginator
      * @throws Exception
      */
-    public function fetchAll()
+    public function fetchAll(): Collection|LengthAwarePaginator
     {
         if ($builder = $this->getQuery()) {
             return $builder->paginate($this->perPage());
@@ -83,7 +84,7 @@ class Finder implements FinderContract
      * @param  array  $columns
      * @return mixed
      */
-    public function find($key, $columns = ['*'])
+    public function find($key, $columns = ['*']): mixed
     {
         return $this->model = once(function () use ($key, $columns) {
             return $this->model->newQueryWithoutScopes()->findOrFail($key, $columns);

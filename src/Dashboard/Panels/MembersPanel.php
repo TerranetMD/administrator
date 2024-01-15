@@ -11,7 +11,7 @@ class MembersPanel extends Panel
 {
     use Stringify;
 
-    public function render()
+    public function render():string
     {
         $weekAgo = \Carbon\Carbon::now()->subWeek();
         $monthAgo = \Carbon\Carbon::now()->subMonth();

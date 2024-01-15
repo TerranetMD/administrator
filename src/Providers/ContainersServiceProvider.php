@@ -139,6 +139,7 @@ class ContainersServiceProvider extends ServiceProvider
                 $platform = $schema->getDatabasePlatform();
                 $platform->registerDoctrineTypeMapping('enum', 'string');
                 $platform->registerDoctrineTypeMapping('set', 'string');
+                $platform->registerDoctrineTypeMapping('point', 'string');
 
                 return new Schema($schema);
             }

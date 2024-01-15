@@ -50,7 +50,7 @@ trait AllowsNavigation
      *
      * @return mixed
      */
-    public function navigableIn()
+    public function navigableIn(): string
     {
         return Navigable::MENU_SIDEBAR;
     }
@@ -71,7 +71,7 @@ trait AllowsNavigation
      *
      * @return mixed
      */
-    public function showIf(Request $request)
+    public function showIf(Request $request): bool
     {
         return ($guard = $this->guard()) && method_exists($guard, 'showIf')
             ? $guard->showIf()
@@ -81,9 +81,9 @@ trait AllowsNavigation
     /**
      * Appends count of items to a navigation.
      *
-     * @return int
+     * @return ?int
      */
-    public function appendCount()
+    public function appendCount(): ?int
     {
         return null;
     }
@@ -93,7 +93,7 @@ trait AllowsNavigation
      *
      * @return mixed
      */
-    public function showAs()
+    public function showAs():string
     {
         return Navigable::AS_LINK;
     }
@@ -103,7 +103,7 @@ trait AllowsNavigation
      *
      * @return string
      */
-    public function group()
+    public function group(): string
     {
         return trans('administrator::module.groups.resources');
     }
@@ -113,17 +113,17 @@ trait AllowsNavigation
      *
      * @return int
      */
-    public function order()
+    public function order(): int
     {
-        return null;
+        return 0;
     }
 
     /**
      * Attributes assigned to <a> element.
      *
-     * @return mixed
+     * @return array
      */
-    public function linkAttributes()
+    public function linkAttributes(): array
     {
         return ['icon' => null, 'id' => $this->url()];
     }
@@ -138,7 +138,7 @@ trait AllowsNavigation
         return Str::snake(class_basename($this));
     }
 
-    public function translationKey()
+    public function translationKey(): string
     {
         return sprintf('administrator::module.resources.%s', $this->url());
     }

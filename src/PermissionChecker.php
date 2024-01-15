@@ -15,7 +15,7 @@ class PermissionChecker implements Contracts\Guard
      *
      * @return bool
      */
-    public function isPermissionGranted($permission)
+    public function isPermissionGranted($permission): bool
     {
         if (\is_callable($permission)) {
             return $this->callback($permission);

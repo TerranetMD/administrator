@@ -54,13 +54,6 @@ class Schema
         });
     }
 
-    /**
-     * List table columns.
-     *
-     * @param $table
-     *
-     * @return \Doctrine\DBAL\Schema\Column[]
-     */
     public function columns($table)
     {
         return Cache::remember("{$table}_columns", $this->lifetime(), function () use ($table) {

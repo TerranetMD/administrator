@@ -11,7 +11,7 @@ trait AllowFormats
      *
      * @return array
      */
-    public function formats()
+    public function formats(): array
     {
         return $this->scaffoldFormats();
     }
@@ -23,7 +23,7 @@ trait AllowFormats
      *
      * @return string
      */
-    public function makeExportableUrl($format)
+    public function makeExportableUrl($format): string
     {
         $payload = array_merge([
             'module' => $this->url(),

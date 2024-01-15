@@ -12,9 +12,9 @@ class BlankPanel extends Panel
     /**
      * Widget contents.
      *
-     * @return mixed
+     * @return string
      */
-    public function render()
+    public function render(): string
     {
         return
         <<<OUT

@@ -10,17 +10,25 @@ trait Skeleton
     /**
      * Render action button.
      *
-     * @param Eloquent $entity
+     * @param Eloquent|null $entity
      * @return string
      */
-    public function render(Eloquent $entity = null)
+    public function render(Eloquent $entity = null): string
     {
         $action = app('scaffold.module')->url().'-'.$this->action($entity);
         $icon = ($i = $this->icon($entity)) ? "<i class=\"fa {$i}\"></i>" : '';
 
+        $attributes = $this->attributes($entity);
+        $attrs = join(' ', array_map(function($key) use ($attributes){
+            if(is_bool($attributes[$key])){
+                return $attributes[$key]?$key:'';
+            }
+            return $key.'="'.$attributes[$key].'"';
+        }, array_keys($attributes)));
+
         return
             <<<OUTPUT
-<a data-scaffold-action="{$action}" data-form-target="{$this->formTarget()}" data-scaffold-key="{$this->entityKey($entity)}" href="{$this->route($entity)}" {$this->attributes($entity)}>
+<a data-scaffold-action="{$action}" data-form-target="{$this->formTarget()}" data-scaffold-key="{$this->entityKey($entity)}" href="{$this->route($entity)}" {$attrs}>
     {$icon}<span>{$this->name($entity)}</span>
 </a>
 OUTPUT;

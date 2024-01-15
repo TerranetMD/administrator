@@ -2,7 +2,7 @@
 
 namespace Terranet\Administrator\Modules;
 
-use App\User;
+use App\Models\User;
 use Terranet\Administrator\Contracts\Module\Editable;
 use Terranet\Administrator\Contracts\Module\Exportable;
 use Terranet\Administrator\Contracts\Module\Filtrable;

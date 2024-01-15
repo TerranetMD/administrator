@@ -13,7 +13,7 @@ trait ValidatesForm
     /**
      * Define validation rules.
      */
-    public function rules()
+    public function rules(): array
     {
         return $this->scaffoldRules();
     }
@@ -23,7 +23,7 @@ trait ValidatesForm
      *
      * @return array
      */
-    protected function scaffoldRules()
+    protected function scaffoldRules(): array
     {
         $rules = [];
 

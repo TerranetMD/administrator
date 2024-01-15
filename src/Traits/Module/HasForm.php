@@ -13,7 +13,7 @@ trait HasForm
      *
      * @return Mutable
      */
-    public function form()
+    public function form(): Mutable
     {
         return $this->scaffoldForm();
     }

@@ -47,9 +47,9 @@ class Filter implements FilterContract
      *
      * @param null|Mutable $filters
      *
-     * @return mixed|void
+     * @return mixed
      */
-    public function setFilters(Mutable $filters = null)
+    public function setFilters(Mutable $filters = null): Filter
     {
         if ($filters) {
             $filters = $filters->map(function ($element) {
@@ -71,11 +71,11 @@ class Filter implements FilterContract
     /**
      * Set scopes.
      *
-     * @param Mutable $scopes
+     * @param Mutable|null $scopes
      *
      * @return $this
      */
-    public function setScopes(Mutable $scopes = null)
+    public function setScopes(Mutable $scopes = null): Filter
     {
         if ($scopes && $scopes->count()) {
             $scopes->prepend(
@@ -93,7 +93,7 @@ class Filter implements FilterContract
      *
      * @return null|Collection
      */
-    public function filters()
+    public function filters(): null|Collection
     {
         return $this->filters;
     }
@@ -101,9 +101,9 @@ class Filter implements FilterContract
     /**
      * Get scopes.
      *
-     * @return mixed
+     * @return null|Collection
      */
-    public function scopes()
+    public function scopes(): null|Collection
     {
         return $this->scopes;
     }

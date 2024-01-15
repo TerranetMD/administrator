@@ -3,6 +3,7 @@
 namespace Terranet\Administrator\Contracts;
 
 use Illuminate\Database\Eloquent\Model;
+use Terranet\Administrator\Actions\Collection;
 
 interface ActionsManager
 {
@@ -14,7 +15,7 @@ interface ActionsManager
     /**
      * Parse given class for single actions.
      */
-    public function actions(): array;
+    public function actions(): array | Collection;
 
     /**
      * Call handler method.

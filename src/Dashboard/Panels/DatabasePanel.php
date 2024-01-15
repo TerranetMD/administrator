@@ -11,7 +11,7 @@ class DatabasePanel extends Panel
 {
     use Stringify;
 
-    public function render()
+    public function render(): string
     {
         $dbStats = $this->getDatabaseStats();
 
@@ -23,10 +23,10 @@ class DatabasePanel extends Panel
     /**
      * @return mixed
      */
-    protected function getDatabaseStats()
+    protected function getDatabaseStats(): mixed
     {
         if (connection('mysql')) {
-            return $this->connection()->select($this->connection()->raw('SHOW TABLE STATUS'));
+            return $this->connection()->select('SHOW TABLE STATUS');
         }
 
         return collect([]);

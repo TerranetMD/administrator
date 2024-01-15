@@ -18,7 +18,7 @@ trait ExecutesQuery
      *
      * @return bool
      */
-    public function hasQuery()
+    public function hasQuery(): bool
     {
         return isset($this->query) && \is_callable($this->query);
     }

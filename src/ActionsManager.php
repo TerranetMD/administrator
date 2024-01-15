@@ -56,12 +56,7 @@ class ActionsManager implements ActionsManagerContract
         $this->module = $module;
     }
 
-    /**
-     * Fetch module's single (per item) actions.
-     *
-     * @return Collection
-     */
-    public function actions()
+    public function actions(): Collection | array
     {
         return $this->scaffoldActions();
     }
@@ -94,7 +89,7 @@ class ActionsManager implements ActionsManagerContract
      *
      * @return bool
      */
-    public function authorize($ability, ?Model $model = null)
+    public function authorize($ability, ?Model $model = null): bool
     {
         // for most cases it is enough to set
         // permissions in Resource object.
@@ -138,7 +133,7 @@ class ActionsManager implements ActionsManagerContract
      *
      * @return mixed
      */
-    public function exec(string $method, array $arguments = [])
+    public function exec(string $method, array $arguments = []): mixed
     {
         // execute custom action
         if (Str::startsWith($method, 'action::')) {
@@ -167,7 +162,7 @@ class ActionsManager implements ActionsManagerContract
      *
      * @return Collection
      */
-    protected function scaffoldActions()
+    protected function scaffoldActions(): Collection
     {
         return new Collection($this->service->actions());
     }
