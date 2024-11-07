@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Http\Terranet\Administrator\Dashboard\BlankPanel;
 use App\Http\Terranet\Administrator\Dashboard\DatabasePanel;
 use App\Http\Terranet\Administrator\Dashboard\MembersPanel;
+use App\Http\Terranet\Administrator\Dashboard\Overview;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Pingpong\Menus\Menu;

@@ -106,6 +106,7 @@ trait HasColumns
 
         $elements = new MutableCollection($fillable);
 
+
         if (property_exists($this, 'includeDateColumns')
             && $this->includeDateColumns
             && count($dates = $model->getDates())) {

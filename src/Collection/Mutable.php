@@ -378,10 +378,11 @@ class Mutable extends BaseCollection
      */
     public function stack(array $elements, string $groupId, $position = null): self
     {
+        //dd($elements, $groupId);
         $group = new Group($groupId);
 
         collect($elements)->each(function ($id) use ($group) {
-            $group->push($this->find($id));
+            $group->push($id);  //$this->find($id)
             $this->items = $this->except($id)->all();
         });
 
@@ -390,8 +391,9 @@ class Mutable extends BaseCollection
         } else {
             $this->add($group);
         }
-
+        dd($this);
         return $this;
+
     }
 
     /**

@@ -118,7 +118,7 @@ abstract class ElementContainer implements AutoTranslatable
     /**
      * @return string
      */
-    public function translationKey()
+    public function translationKey(): string
     {
         $key = sprintf('administrator::columns.%s.%s', $this->module()->url(), $this->id);
 

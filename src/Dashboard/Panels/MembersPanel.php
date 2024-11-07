@@ -26,6 +26,7 @@ class MembersPanel extends Panel
                                  ->select([DB::raw('COUNT(id) AS cnt'), DB::raw('DATE(created_at) as dt')])
                                  ->groupBy('dt')->pluck('cnt', 'dt');
 
+
         return view(Architect::template()->dashboard('members'), [
             'total' => $total,
             'signed' => [

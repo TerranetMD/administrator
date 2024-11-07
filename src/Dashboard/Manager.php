@@ -2,6 +2,8 @@
 
 namespace Terranet\Administrator\Dashboard;
 
+use App\Http\Terranet\Administrator\Widgets\PublicPlaceImages;
+use App\Models\PublicPlace;
 use Closure;
 use IteratorAggregate;
 
@@ -31,4 +33,23 @@ class Manager implements IteratorAggregate
     {
         return new \ArrayIterator($this->rows);
     }
+
+    /*public function push($widget)
+    {
+        $this->rows[] = $widget;
+        return $this;
+    }*/
+    public function push($widget)
+    {
+        if ($widget instanceof PublicPlace) {
+            $publicPlaceImages = new PublicPlaceImages($widget->images);
+            $this->rows[] = $publicPlaceImages;
+        } else {
+            $this->rows[] = $widget;
+        }
+
+        return $this;
+    }
+
+
 }

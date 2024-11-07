@@ -2,13 +2,13 @@
 
 namespace Terranet\Administrator\Controllers;
 
+use App\Http\Controllers\Api\PlaceController;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Symfony\Component\HttpFoundation\Response;
 use Terranet\Administrator\AdminRequest;
 use Terranet\Administrator\Contracts\Module;
@@ -20,8 +20,8 @@ use Terranet\Administrator\Services\MediaLibraryProvider;
 class ScaffoldController extends AdminController
 {
     /**
-     * @param  AdminRequest  $request
-     * @param  string  $page
+     * @param AdminRequest $request
+     * @param string $page
      * @return View
      * @throws \Exception
      */
@@ -44,9 +44,9 @@ class ScaffoldController extends AdminController
     /**
      * View resource.
      *
-     * @param  AdminRequest  $request
-     * @param  string  $page
-     * @param  int  $id
+     * @param AdminRequest $request
+     * @param string $page
+     * @param int $id
      * @return View
      * @throws Exception
      */
@@ -66,8 +66,8 @@ class ScaffoldController extends AdminController
     /**
      * Edit resource.
      *
-     * @param  AdminRequest  $request
-     * @param  string  $page
+     * @param AdminRequest $request
+     * @param string $page
      * @param $id
      * @return View
      * @throws Exception
@@ -88,7 +88,7 @@ class ScaffoldController extends AdminController
     /**
      * @param                    $page
      * @param                    $id
-     * @param  null|UpdateRequest  $request
+     * @param null|UpdateRequest $request
      * @return RedirectResponse
      */
     public function update(UpdateRequest $request, string $page, $id)
@@ -113,12 +113,13 @@ class ScaffoldController extends AdminController
     /**
      * Create new item.
      *
-     * @param  AdminRequest  $request
+     * @param AdminRequest $request
      * @return View
      * @throws \Exception
      */
     public function create(AdminRequest $request)
     {
+
         /** @var Scaffolding $resource */
         $resource = $request->resource();
 
@@ -133,8 +134,8 @@ class ScaffoldController extends AdminController
     /**
      * Store new item.
      *
-     * @param  UpdateRequest  $request
-     * @param  string  $page
+     * @param UpdateRequest $request
+     * @param string $page
      * @return RedirectResponse
      * @throws \Exception
      */
@@ -157,8 +158,8 @@ class ScaffoldController extends AdminController
     /**
      * Destroy item.
      *
-     * @param  AdminRequest  $request
-     * @param  string  $page
+     * @param AdminRequest $request
+     * @param string $page
      * @param $id
      * @return RedirectResponse
      */
@@ -180,11 +181,33 @@ class ScaffoldController extends AdminController
         return redirect()->to(route('scaffold.index', ['module' => $module]))->with('messages', [$message]);
     }
 
+
+    public function reject(AdminRequest $request, string $page, $id)
+    {
+        $module = $request->resource();
+
+        $reason = $request->query('reason');
+
+        $this->authorize('reject', $eloquent = $request->resolveModel($id));
+
+        try {
+            $eloquent->update(['reason' => $reason]);
+
+            $module->actions()->exec('reject', [$eloquent]);
+        } catch (\Exception $e) {
+            return back()->withErrors([$e->getMessage()]);
+        }
+
+        $message = $this->translatedMessage('reject_success', $module);
+
+        return redirect()->to(route('scaffold.index', ['module' => $module]))->with('messages', [$message]);
+    }
+
     /**
      * Destroy attachment.
      *
-     * @param  AdminRequest  $request
-     * @param  string  $page
+     * @param AdminRequest $request
+     * @param string $page
      * @param $id
      * @param $attachment
      * @return RedirectResponse
@@ -208,8 +231,8 @@ class ScaffoldController extends AdminController
     /**
      * Fetch media collection.
      *
-     * @param  AdminRequest  $request
-     * @param  string  $page
+     * @param AdminRequest $request
+     * @param string $page
      * @param $id
      * @return JsonResponse
      */
@@ -232,10 +255,10 @@ class ScaffoldController extends AdminController
     }
 
     /**
-     * @param  AdminRequest  $request
-     * @param  string  $page
+     * @param AdminRequest $request
+     * @param string $page
      * @param $id
-     * @param  string  $collection
+     * @param string $collection
      * @return RedirectResponse
      */
     public function attachMedia(AdminRequest $request, string $page, $id, string $collection)
@@ -253,8 +276,8 @@ class ScaffoldController extends AdminController
     /**
      * Detach a media file from resource.
      *
-     * @param  AdminRequest  $request
-     * @param  string  $page
+     * @param AdminRequest $request
+     * @param string $page
      * @param $id
      * @param $mediaId
      * @return JsonResponse
@@ -272,7 +295,7 @@ class ScaffoldController extends AdminController
     /**
      * Search for a model(s).
      *
-     * @param  AdminRequest  $request
+     * @param AdminRequest $request
      * @return JsonResponse
      */
     public function search(AdminRequest $request): JsonResponse
@@ -302,10 +325,10 @@ class ScaffoldController extends AdminController
     /**
      * Custom action related to item.
      *
-     * @param  AdminRequest  $request
-     * @param  string  $page
+     * @param AdminRequest $request
+     * @param string $page
      * @param $id
-     * @param  string  $action
+     * @param string $action
      * @return RedirectResponse
      */
     public function action(AdminRequest $request, string $page, $id, string $action)
@@ -315,7 +338,7 @@ class ScaffoldController extends AdminController
 
         $this->authorize($action, $eloquent = $request->resolveModel($id));
 
-        $response = $resource->actions()->exec('action::'.$action, [$eloquent]);
+        $response = $resource->actions()->exec('action::' . $action, [$eloquent]);
 
         if ($response instanceof Response || $response instanceof Renderable) {
             return $response;
@@ -327,8 +350,8 @@ class ScaffoldController extends AdminController
     /**
      * Generate action message.
      *
-     * @param  string  $action
-     * @param  Module  $resource
+     * @param string $action
+     * @param Module $resource
      * @return string
      */
     protected function translatedMessage(string $action, $resource): string
@@ -343,9 +366,9 @@ class ScaffoldController extends AdminController
     }
 
     /**
-     * @param  ?string  $term
-     * @param  Model  $eloquent
-     * @param  string  $column
+     * @param  ?string $term
+     * @param Model $eloquent
+     * @param string $column
      * @return mixed
      */
     protected function searchableQuery(?string $term, Model $eloquent, string $column): Builder
@@ -355,10 +378,43 @@ class ScaffoldController extends AdminController
 
         return $eloquent->newQuery()
             ->when($searchByKey, function (Builder $query) use ($searchableKey, $term) {
-                return $query->where($searchableKey, (int) $term);
+                return $query->where($searchableKey, (int)$term);
             })
             ->when(!$searchByKey, function (Builder $query) use ($searchableKey, $term) {
                 return $query->orWhere($searchableKey, 'LIKE', "%{$term}%");
             });
+    }
+
+    public function import(AdminRequest $request)
+    {
+        $resource = $request->resource();
+
+        $request->validate([
+            'jsonFile' => 'required|mimes:json|max:2048',
+        ]);
+
+        $file = $request->file('jsonFile');
+
+        $path = app_path('/places');
+        if (!is_dir($path)) {
+            mkdir($path, 0755, true);
+        }
+
+        //$filePath = $path . '/lisbon.json';
+
+        $file->move($path, 'fileUploadedFromAdminPanel.json');
+
+        $controller = new PlaceController();
+        $result = $controller->read();
+
+        if (isset($result['error'])) {
+            return back()->withErrors(['message' => $result['error']]);
+        }
+
+        //$resourceMessage = $this->translatedMessage('import_success', $resource);
+        $message = "{$result['places_added']}/{$result['total']} were imported successfully!  {$result['duplicates_added']} were detected as duplicates.
+        {$result['without_coordinates']} places were imported without coordinates. ";
+
+        return back()->with('messages', [$this->translatedMessage($message, $resource)]);
     }
 }

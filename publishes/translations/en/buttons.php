@@ -2,6 +2,7 @@
 
 return [
     'create'        => 'Create',
+    'import' => 'Import',
     'create_item'   => 'Create :resource',
     'edit'          => 'Edit',
     'view'          => 'View',
@@ -11,6 +12,9 @@ return [
     'reset'         => 'Reset',
     'save_return'   => 'Save & Return',
     'save_create'   => 'Save & Create new',
+    'add_to_places' => "Add to Places",
+    'add_and_remove' => "Add & Remove",
+    'publish' => 'Publish',
     'download'      => 'Download',
     'search'        => 'Search',
     'remember_me'   => 'Remember me',

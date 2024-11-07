@@ -30,7 +30,7 @@ class Template implements TemplateProvider
     {
         $partials = $this->map(
             'index',
-            ['index', 'create', 'export', 'filters', 'scopes', 'header', 'batch', 'row', 'scripts', 'paginator']
+            ['index', 'create', 'export', 'filters', 'scopes', 'header', 'batch', 'row', 'scripts', 'paginator', 'import']
         );
 
         return null === $partial ? $partials : $partials[$partial];
@@ -83,6 +83,7 @@ class Template implements TemplateProvider
             'index',
             'model',
             'create',
+            'import'
         ]);
 
         return null === $partial ? $partials : $partials[$partial];
@@ -97,7 +98,7 @@ class Template implements TemplateProvider
      */
     public function edit(string $partial = 'index'): string
     {
-        $partials = $this->map('edit', ['index', 'actions', 'row', 'scripts', 'create']);
+        $partials = $this->map('edit', ['index', 'actions', 'row', 'scripts', 'create', 'import']);
 
         return null === $partial ? $partials : $partials[$partial];
     }

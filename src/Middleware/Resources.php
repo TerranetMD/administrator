@@ -159,7 +159,7 @@ class Resources
     protected function validateContainer(Module $module, Menu $navigation)
     {
         $container = $module->navigableIn();
-        
+
         if (!array_key_exists($container, $navigation->all())) {
             $message =
                 "Can not add \"{$module->title()}\" to \"{$container}\" menu. Available menus: ".
@@ -200,6 +200,7 @@ class Resources
                 'current' => \URL::getRequest()->getPathInfo(),
                 'create' => route('scaffold.create', ['module' => $module], false),
                 'module' => config('administrator.prefix')."/{$module}",
+                //'import' => route('scaffold.import', ['module' => $module], false)
             ]);
 
             $checked[$module] = Str::startsWith($urls['current'], $urls['module']) && ($urls['current'] !== $urls['create']);

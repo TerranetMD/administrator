@@ -31,16 +31,21 @@ abstract class AdminController extends BaseController
      */
     public function authorize($ability, $arguments = null)
     {
+
+
         /** @var Module $resource */
         $resource = app('scaffold.module');
 
+
+
         if (!$response = $resource->actions()->authorize($ability, $arguments)) {
+
             throw $this->createGateUnauthorizedException(
+
                 $ability,
                 trans('administrator::errors.unauthorized')
             );
         }
-
         return $response;
     }
 

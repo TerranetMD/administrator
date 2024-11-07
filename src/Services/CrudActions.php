@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Terranet\Administrator\Actions\RemoveSelected;
+use Terranet\Administrator\Actions\SaveAndConfirm;
 use Terranet\Administrator\Actions\SaveOrder;
 use Terranet\Administrator\AdminRequest;
 use Terranet\Administrator\Contracts\Services\CrudActions as CrudActionsContract;
@@ -56,7 +57,7 @@ class CrudActions implements CrudActionsContract
      */
     public function batchActions(): array
     {
-        $actions = [RemoveSelected::class];
+        $actions = [RemoveSelected::class, SaveAndConfirm::class];
 
         if ($this->module->model() instanceof Rankable) {
             array_push($actions, SaveOrder::class);
@@ -154,4 +155,17 @@ class CrudActions implements CrudActionsContract
 
         return true;
     }
+    public function reject(Model $item)
+    {
+        try {
+            $item->status = 'rejected';
+            $item->save();
+
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+
 }

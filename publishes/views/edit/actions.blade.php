@@ -14,5 +14,6 @@
                 {{ trans('administrator::buttons.save_create') }}
             </button>
         @endif
+
     </td>
 </tr>
